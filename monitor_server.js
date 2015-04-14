@@ -4,8 +4,16 @@ var socketio = require('socket.io')
   , os = require('os');
 
 
-var serversocket= socketio.listen(8080)
+var app = http.createServer(function (req, res) {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end();
+    })
+app.listen(8080);
 
-socketio.sockets.on('heartbeat', function (data) {
+var serversocket= socketio.listen(app)
+
+var socket = io.connect('http://localhost:8080');
+
+socket.on('heartbeat', function (data) {
     console.log(data);
 });
