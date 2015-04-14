@@ -3,15 +3,19 @@ var http = require('http')
   , os = require('os')
   , io = require('socket.io-client')
 
- socket = io.connect('http://localhost:8080/');
+  var args = process.argv.slice(2);
+  var name = args[0];
+
+
+socket = io.connect('http://localhost:8080/');
 
 
 socket.on('connect',function(){
-  socket.emit('heartbeat', { Name: 'client-1' , cpu: cpuAverage() });
+  socket.emit('heartbeat', { Name: name , cpu: cpuAverage() });
 });
 
 setInterval( function () {
-  socket.emit('heartbeat', { Name: 'client-1' , cpu: cpuAverage() });
+  socket.emit('heartbeat', { Name: name , cpu: cpuAverage() });
   }, 2000);
 
 // Create function to get CPU information
