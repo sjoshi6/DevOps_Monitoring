@@ -6,7 +6,6 @@ var sio = require('socket.io')
 
 
   var app = express();
-
   var server = app.listen(8080, function () {
 
           var host = server.address().address
@@ -15,13 +14,11 @@ var sio = require('socket.io')
         console.log('Example app listening at http://%s:%s', host, port)
 })
 
-
   var io = require('socket.io').listen(server);
-
-
+  
   io.sockets.on('connection', function (socket) {
 
-        socket.on('hearbeat',function(data){
+        socket.on('heartbeat',function(data){
               console.log(data);
         });
 
