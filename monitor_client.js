@@ -4,11 +4,12 @@ var http = require('http')
   , io = require('socket.io-client')
 
  socket = io.connect('http://localhost:8080/');
-
-socket.on('connect',function(){
-  socket.emit('heartbeat', { Name: 'client-1' , cpu: cpuAverage() });
-});
-
+ setInterval( function ()
+ {
+      socket.on('connect',function(){
+        socket.emit('heartbeat', { Name: 'client-1' , cpu: cpuAverage() });
+      });
+},2000);
 
 // Create function to get CPU information
 function cpuTicksAcrossCores()
