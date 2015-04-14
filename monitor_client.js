@@ -7,7 +7,7 @@ var http = require('http')
   var name = args[0];
 
 
-socket = io.connect('http://localhost:8080/');
+socket = io.connect('http://152.46.18.7:3000/');
 
 
 socket.on('connect',function(){
