@@ -5,9 +5,18 @@ var sio = require('socket.io')
   , express = require('express');
 
 
-  var app = require('express').createServer();
-  var io = require('socket.io').listen(app);
+  var app = express();
 
+  var server = app.listen(8080, function () {
+
+          var host = server.address().address
+          var port = server.address().port
+
+        console.log('Example app listening at http://%s:%s', host, port)
+})
+
+
+  var io = require('socket.io').listen(server);
 
 
   io.sockets.on('connection', function (socket) {
