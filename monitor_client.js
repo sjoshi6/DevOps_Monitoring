@@ -1,13 +1,8 @@
-var socketio = require('socket.io')
-  , http = require('http')
-  , request = require('request')
-  , os = require('os');
+var io = require('socket.io-client'),
+
+socket = io.connect('localhost', {
+    port: 8080
+});
 
 
-var socket = socketio.connect('http://localhost:8080')
-
-socket.emit('heartbeat',
-{
-      name: "Client1"
-      //, cpu: cpuAverage()
- });
+socket.emit('heartbeat', { Name: 'client1' });
